@@ -23,7 +23,7 @@ return {
   config = function()
     local ts = require('telescope.builtin')
 
-    require('mason').setup{}
+    require('mason').setup {}
     require('mason-lspconfig').setup {
       ensure_installed = { 'lua_ls', 'pyright' },
       automatic_installation = false,
@@ -41,10 +41,25 @@ return {
     bind('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
     require("mason-lspconfig").setup_handlers {
-        function (server_name)
-            require("lspconfig")[server_name].setup {}
-        end,
+      function(server_name)
+        require("lspconfig")[server_name].setup {}
+      end,
     }
 
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then return end
+
+        if client.supports_method('textDocument/formatting') then
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = args.buf,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+            end
+          })
+        end
+      end
+    })
   end
 }
