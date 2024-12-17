@@ -40,7 +40,11 @@ return {
     bind('K', vim.lsp.buf.hover, 'Hover Documentation')
     bind('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-    require('lspconfig').lua_ls.setup{}
+    require("mason-lspconfig").setup_handlers {
+        function (server_name)
+            require("lspconfig")[server_name].setup {}
+        end,
+    }
 
   end
 }
