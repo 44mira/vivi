@@ -12,5 +12,11 @@ return {
 
     -- surround actions
     require('mini.surround').setup()
+
+    -- completion
+    require('mini.completion').setup()
+
+    -- statusline
+    require('mini.statusline').setup()
   end
 }
