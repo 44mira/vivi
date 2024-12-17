@@ -29,7 +29,7 @@ end
 -- buffer navigation
 bind('n', '<leader>[', '<cmd>bp<cr>', { desc = 'Previous buffer' })
 bind('n', '<leader>]', '<cmd>bn<cr>', { desc = 'Next buffer' })
-bind('n', 'bd', '<cmd>bd<cr>', { desc = 'Buffer delete'} )
+bind('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Buffer delete'} )
 
 
 -- assign a colorcolumn to column <count>. defaults to 80
