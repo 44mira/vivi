@@ -7,6 +7,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "saghen/blink.cmp",
     "nvim-telescope/telescope.nvim",
     {
       "folke/lazydev.nvim",
@@ -42,7 +43,8 @@ return {
 
     require("mason-lspconfig").setup_handlers {
       function(server_name)
-        require("lspconfig")[server_name].setup {}
+        local capabilities = require('blink.cmp').get_lsp_capabilities({})
+        require("lspconfig")[server_name].setup(capabilities)
       end,
     }
 
