@@ -41,3 +41,6 @@ return {
   }
 }
 ```
+
+As an exercise, the repo does not come with a formatter plugin out-of-the-box.
+You can try `stevearc/conform.nvim` for this.
