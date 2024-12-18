@@ -1,3 +1,22 @@
+--[[
+This plugin gives our Neovim auto-completion!
+
+Relevant keybindings when the completion window is open:
+
+<C-space> : show, show_documentation, hide_documentation
+<C-e>     : hide
+<C-y>     : select_and_accept
+
+<C-p>     : select_prev
+<C-n>     : select_next
+
+<C-b>     : scroll_documentation_up
+<C-f>     : scroll_documentation_down
+
+<Tab>     : snippet_forward
+<S-Tab>   : snippet_backward
+--]]
+
 return {
   'saghen/blink.cmp',
   version = 'v0.*',

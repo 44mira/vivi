@@ -1,3 +1,12 @@
+--[[
+This plugin gives Neovim a fuzzy-finder panel. This allows us to search on
+various groups and perform actions based on pre-defined functions.
+
+Try out `<leader>sk` to search for normal mode keymaps!
+
+Relevant keybindings can be found in the code below, all inside `bind` calls.
+--]]
+
 local function bind(lhs, rhs, opt)
   vim.keymap.set('n', lhs, rhs, opt)
 end
