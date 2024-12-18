@@ -5,7 +5,7 @@ Simplified Neovim configuration with a focus on accessibility and ease of use.
 
 | splash page | telescope |
 | --- | --- |
-|![image](https://github.com/user-attachments/assets/b5b4dc67-0cd7-4bba-bc92-79c8e3ec3e00) | ![image](https://github.com/user-attachments/assets/9b4c67d0-6973-471d-a8e5-e7d3b7398fa2) |
+|![image](https://github.com/user-attachments/assets/b5b4dc67-0cd7-4bba-bc92-79c8e3ec3e00) | ![image](https://github.com/user-attachments/assets/7294dd4e-add1-4c4a-86ba-ffc57f52c59e) |
 
 | oil buffer | theme plugin |
 | --- | --- |
