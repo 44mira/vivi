@@ -1,6 +1,17 @@
 # vivi
 Simplified Neovim configuration with a focus on accessibility and ease of use.
 
+## Preview
+
+| splash page | telescope |
+| --- | --- |
+|![image](https://github.com/user-attachments/assets/b5b4dc67-0cd7-4bba-bc92-79c8e3ec3e00) | ![image](https://github.com/user-attachments/assets/9b4c67d0-6973-471d-a8e5-e7d3b7398fa2) |
+
+| oil buffer | theme plugin |
+| --- | --- |
+| ![image](https://github.com/user-attachments/assets/8b1a65ab-07e6-4475-ac71-c93f5145ad4b) | ![image](https://github.com/user-attachments/assets/ee665a05-512e-4234-b590-008ed83175ce) |
+
+
 ## Installation
 - Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md).
 - Clone this repo into Neovim's configuration directory
