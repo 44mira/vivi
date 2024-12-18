@@ -16,9 +16,6 @@ vim.o.signcolumn = "yes"
 -- keep history
 vim.opt.undofile = true
 
--- set horizontal rule
-vim.o.colorcolumn = ""
-
 -- Decrease update time
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
@@ -28,6 +25,10 @@ vim.opt.cursorline = true
 
 -- vertical padding for cursor
 vim.opt.scrolloff = 2
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
