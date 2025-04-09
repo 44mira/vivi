@@ -10,8 +10,14 @@ Notable keymappings (with <leader> as <space>):
 
 return {
   'stevearc/oil.nvim',
-  opts = {},
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  lazy = false,
+  config = function(_, opts)
+    require("oil").setup(opts)
+  end,
+  opts = {
+    default_file_explorer = true,
+  },
   keys = {
     { "<leader>f", "<cmd>Oil<cr>", { desc = "Open Oil buffer" } }
   }

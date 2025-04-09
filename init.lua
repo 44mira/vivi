@@ -12,6 +12,13 @@ vim.o.expandtab = true
 
 -- set gitsigns column
 vim.o.signcolumn = "yes"
+vim.o.colorcolumn = "80"
+
+-- Add hanging indent
+vim.o.breakindent = true
+vim.o.breakindentopt = "list:-1"
+vim.o.linebreak = true
+vim.o.formatlistpat = [[\v^\zs\s*([-*]|\d+\.)+\s+\ze]]
 
 -- keep history
 vim.opt.undofile = true
@@ -31,13 +38,13 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = "Highlight text when yanking",
-  group = vim.api.nvim_create_augroup('vivi-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight text when yanking",
+	group = vim.api.nvim_create_augroup("vivi-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
-require('vivi.keymaps')
-require('vivi.lazy')
+require("vivi.keymaps")
+require("vivi.lazy")

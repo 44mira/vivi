@@ -31,69 +31,71 @@ Relevant keymaps (with <leader> as <space>):
 --]]
 
 local function bind(lhs, rhs, desc)
-  vim.keymap.set('n', lhs, rhs, { desc = desc })
+  vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
 
 return {
-  'neovim/nvim-lspconfig',
+  "neovim/nvim-lspconfig",
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "jay-babu/mason-nvim-dap.nvim",
     "saghen/blink.cmp",
     "nvim-telescope/telescope.nvim",
-    {
-      "folke/lazydev.nvim",
-      ft = "lua", -- only load on lua files
-      opts = {
-        library = {
-          -- See the configuration section for more details
-          -- Load luvit types when the `vim.uv` word is found
-          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        },
-      },
-    },
+    "folke/lazydev.nvim",
   },
   config = function()
-    local ts = require('telescope.builtin')
+    local builtin = require("telescope.builtin")
 
-    require('mason').setup {}
-    require('mason-lspconfig').setup {
-      ensure_installed = { 'lua_ls', 'pyright' },
-      automatic_installation = false,
-    }
-
-    vim.keymap.set('i', '<C-j>', vim.lsp.buf.signature_help, { desc = "Signature help" })
-    bind('gd', ts.lsp_definitions, '[G]oto [D]efinition')
-    bind('gr', ts.lsp_references, '[G]oto [R]eferences')
-    bind('gI', ts.lsp_implementations, '[G]oto [I]mplementation')
-    bind('<leader>ds', ts.lsp_document_symbols, '[D]ocument [S]ymbols')
-    bind('<leader>ws', ts.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-    bind('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-    bind('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    bind('K', vim.lsp.buf.hover, 'Hover Documentation')
-    bind('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-    require("mason-lspconfig").setup_handlers {
-      function(server_name)
-        local capabilities = require('blink.cmp').get_lsp_capabilities({})
-        require("lspconfig")[server_name].setup(capabilities)
-      end,
-    }
-
-    vim.api.nvim_create_autocmd('LspAttach', {
-      callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if not client then return end
-
-        if client.supports_method('textDocument/formatting') then
-          vim.api.nvim_create_autocmd('BufWritePre', {
-            buffer = args.buf,
-            callback = function()
-              vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-            end
-          })
-        end
-      end
+    require("mason").setup({})
+    require("mason-nvim-dap").setup({
+      ensure_installed = {
+        "delve",
+        "python",
+        "codelldb",
+        "php",
+        "bash",
+        "elixir",
+        "haskell",
+        "node2",
+      },
+      automatic_installation = true,
+      handlers = {
+        function(config)
+          -- all sources with no handler get passed here
+          require("mason-nvim-dap").default_setup(config)
+        end,
+      },
     })
-  end
+    require("mason-lspconfig").setup({
+      ensure_installed = { "lua_ls", "pyright" },
+      automatic_installation = false,
+    })
+
+    -- vim.keymap.set("i", "<C-j>", vim.lsp.buf.signature_help, { desc = "Signature help" })
+    bind("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
+    bind("gr", builtin.lsp_references, "[G]oto [R]eferences")
+    bind("gI", builtin.lsp_implementations, "[G]oto [I]mplementation")
+    bind("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
+    bind("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+    bind("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    bind("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+    bind("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+    require("mason-lspconfig").setup_handlers({
+      function(server_name)
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
+        -- see nvim-ufo.lua
+        capabilities.textDocument.foldingRange = {
+          dynamicRegistration = false,
+          lineFoldingOnly = true,
+        }
+
+        require("lspconfig")[server_name].setup({ capabilities = capabilities })
+      end,
+    })
+  end,
 }
