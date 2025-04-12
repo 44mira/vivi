@@ -56,11 +56,12 @@ return {
 
 		-- Settings {{{
 		org_hide_emphasis_markers = true,
-		org_startup_folded = "content",
+		org_startup_folded = "inherit",
 		org_hide_leading_stars = true,
 		org_adapt_indentation = true,
 		-- org_startup_indented = false,
 		-- org_indent_mode_turns_on_hiding_stars = false,
+		org_id_link_to_org_use_id = true,
 		-- }}}
 
 		-- Templates
@@ -71,6 +72,7 @@ return {
 
 		mappings = {
 			org = {
+				org_insert_heading_respect_content = { "<Leader>oh", desc = "org insert headline (respect content)" },
 				org_toggle_checkbox = { "<Leader>oxt", desc = "org toggle checkbox" },
 			},
 		},

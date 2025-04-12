@@ -6,6 +6,7 @@ vim.o.relativenumber = true
 vim.o.clipboard = "unnamedplus"
 
 -- tab settings
+vim.o.softtabstop = 0
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
@@ -13,6 +14,8 @@ vim.o.expandtab = true
 -- set gitsigns column
 vim.o.signcolumn = "yes"
 vim.o.colorcolumn = "80"
+vim.o.numberwidth = 3
+vim.o.ruler = false
 
 -- Add hanging indent
 vim.o.breakindent = true
@@ -31,7 +34,7 @@ vim.opt.timeoutlen = 300
 vim.opt.cursorline = true
 
 -- vertical padding for cursor
-vim.opt.scrolloff = 2
+vim.opt.scrolloff = 1
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -48,3 +51,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 require("vivi.keymaps")
 require("vivi.lazy")
+require("vivi.ft_overrides")
