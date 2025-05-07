@@ -22,4 +22,5 @@ return {
 			c(1, { t("true"), t("false") }),
 		})
 	),
+	s("jumm", t("<!-- jump_to_middle -->")),
 }

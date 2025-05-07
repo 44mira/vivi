@@ -75,3 +75,9 @@ bind("n", "<leader>ss", function()
 		vim.o.fillchars = vim.o.fillchars:sub(string.len("eob: ,") + 1)
 	end
 end, { desc = "Toggle statusline" })
+
+-- toggle inlay hints
+vim.lsp.inlay_hint.enable(true)
+bind("n", "<leader>th", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })

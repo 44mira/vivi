@@ -1,9 +1,9 @@
 return {
 	"michaelrommel/nvim-silicon",
 	opts = {
-		font = "Iosevka Nerd Font Mono=16",
+		font = "Agave Nerd Font Mono=18",
 		background = "#252423",
-		theme = "gruvbox-dark",
+		theme = "OneHalfDark",
 		tab_width = 2,
 		gobble = true,
 		shadow_color = "#100808",

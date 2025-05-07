@@ -55,6 +55,7 @@ return {
 
 			-- <C-CR> for accept
 			["<C-y>"] = {},
+			["<Tab>"] = {},
 			["<C-CR>"] = { "select_and_accept" },
 
 			-- here for reference, doesn't change anything in default preset

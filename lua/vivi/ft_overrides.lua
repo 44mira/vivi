@@ -1,12 +1,12 @@
 vim.api.nvim_create_augroup("vivi-filetype-overrides", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown" },
+	pattern = { "markdown", "rust" },
 	group = "vivi-filetype-overrides",
 	callback = function()
-		vim.o.softtabstop = 0
+		vim.o.softtabstop = -1
+		vim.o.shiftwidth = 0
 		vim.o.tabstop = 2
-		vim.o.shiftwidth = 2
 		vim.o.expandtab = true
 		vim.o.smarttab = true
 	end,
