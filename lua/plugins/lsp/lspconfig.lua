@@ -35,10 +35,9 @@ local function bind(lhs, rhs, desc)
 end
 
 return {
-	"neovim/nvim-lspconfig",
+	"mason-org/mason.nvim",
 	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 		"saghen/blink.cmp",
 		"nvim-telescope/telescope.nvim",
@@ -53,7 +52,6 @@ return {
 				"delve",
 				"python",
 				"codelldb",
-				"php",
 				"bash",
 				"elixir",
 				"haskell",
@@ -67,9 +65,18 @@ return {
 				end,
 			},
 		})
+
 		require("mason-lspconfig").setup({
-			ensure_installed = { "lua_ls", "pyright", "clangd", "gopls", "zls", "rust_analyzer" },
-			automatic_installation = false,
+			ensure_installed = {
+				"lua_ls",
+				"pyright",
+				"clangd",
+				"gopls",
+				"zls",
+				"rust_analyzer",
+				"tinymist",
+			},
+			automatic_enable = true,
 		})
 
 		-- vim.keymap.set("i", "<C-j>", vim.lsp.buf.signature_help, { desc = "Signature help" })
@@ -82,20 +89,40 @@ return {
 		bind("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 		bind("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local textDocument = {
+			foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			},
+		}
+
+		vim.lsp.config("*", { capabilities = { textDocument = textDocument } })
+
 		-- local capabilities = vim.lsp.protocol.make_client_capabilities()
 		-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-		require("mason-lspconfig").setup_handlers({
-			function(server_name)
-				local capabilities = require("blink.cmp").get_lsp_capabilities()
-				-- see nvim-ufo.lua
-				capabilities.textDocument.foldingRange = {
-					dynamicRegistration = false,
-					lineFoldingOnly = true,
-				}
-
-				require("lspconfig")[server_name].setup({ capabilities = capabilities })
-			end,
-		})
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- -- see nvim-ufo.lua
+		-- capabilities.textDocument.foldingRange = {
+		-- 	dynamicRegistration = false,
+		-- 	lineFoldingOnly = true,
+		-- }
+		--
+		-- require("mason-lspconfig").setup_handlers({
+		-- 	function(server_name)
+		-- 		require("lspconfig")[server_name].setup({
+		-- 			capabilities = capabilities,
+		-- 			inlay_hints = { enabled = true },
+		-- 		})
+		-- 	end,
+		-- 	["tinymist"] = function()
+		-- 		require("lspconfig").tinymist.setup({
+		-- 			capabilities = capabilities,
+		-- 			formatterMode = "typstyle",
+		-- 			exportPdf = "never",
+		-- 		})
+		-- 	end,
+		-- })
 	end,
 }
