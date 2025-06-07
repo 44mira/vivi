@@ -40,11 +40,11 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 		"saghen/blink.cmp",
-		"nvim-telescope/telescope.nvim",
 		"folke/lazydev.nvim",
+		"ibhagwan/fzf-lua",
 	},
 	config = function()
-		local builtin = require("telescope.builtin")
+		local fzf = require("fzf-lua")
 
 		require("mason").setup({})
 		require("mason-nvim-dap").setup({
@@ -54,7 +54,6 @@ return {
 				"codelldb",
 				"bash",
 				"elixir",
-				"haskell",
 				"node2",
 			},
 			automatic_installation = true,
@@ -80,14 +79,14 @@ return {
 		})
 
 		-- vim.keymap.set("i", "<C-j>", vim.lsp.buf.signature_help, { desc = "Signature help" })
-		bind("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
-		bind("gr", builtin.lsp_references, "[G]oto [R]eferences")
-		bind("gI", builtin.lsp_implementations, "[G]oto [I]mplementation")
-		bind("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
-		bind("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+		bind("gd", fzf.lsp_definitions, "[G]oto [D]efinition")
+		bind("gr", fzf.lsp_references, "[G]oto [R]eferences")
+		bind("gD", fzf.lsp_declarations, "[G]oto [D]eclaration")
+		bind("gI", fzf.lsp_implementations, "[G]oto [I]mplementation")
+		bind("<leader>ds", fzf.lsp_document_symbols, "[D]ocument [S]ymbols")
+		bind("<leader>ws", fzf.lsp_live_workspace_symbols, "[W]orkspace [S]ymbols")
 		bind("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-		bind("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-		bind("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+		bind("<leader>ca", fzf.lsp_code_actions, "[C]ode [A]ction")
 
 		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local textDocument = {

@@ -30,4 +30,13 @@ return {
 			branch_symbol = " ",
 		},
 	},
+
+	config = function(_, opts)
+		require("staline").setup(opts)
+
+		-- vim.opt.showtabline = 2
+		-- require("stabline").setup({
+		-- 	stab_right = "",
+		-- })
+	end,
 }

@@ -19,9 +19,13 @@ return {
 			filtered_items = {
 				hide_dotfiles = false,
 			},
+			follow_current_file = {
+				enabled = true,
+				leave_dir_open = false,
+			},
 		},
 	},
 	keys = {
-		{ "<leader>tt", "<cmd>Neotree toggle<cr>", { desc = "Toggle file tree" } },
+		{ "<leader>tt", "<cmd>Neotree toggle reveal<cr>", { desc = "Toggle file tree" } },
 	},
 }

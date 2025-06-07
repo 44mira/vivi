@@ -9,7 +9,7 @@ return {
 
 		-- Mark creation and finding
 		bind("n", "<leader>m", require("harpoon.mark").add_file, { desc = "[M]ake mark" })
-		bind("n", "<leader>o", require("harpoon.ui").toggle_quick_menu, { desc = "[O]pen marks" })
+		bind("n", "<leader>om", require("harpoon.ui").toggle_quick_menu, { desc = "[O]pen marks" })
 
 		-- Scroll through marks
 		bind("n", "<leader>wj", require("harpoon.ui").nav_prev, { desc = "[W]arp to previous mark" })
