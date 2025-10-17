@@ -24,9 +24,12 @@ return {
 		-- local ts = require("telescope.builtin")
 
 		local fzf = require("fzf-lua")
+		fzf.setup({
+			"telescope",
+		})
 
 		bind("<leader>sf", fzf.files, { desc = "Fzf: Find files" })
-		bind("<leader>s<leader>", fzf.buffers, { desc = "Fzf: Buffers" })
+		bind("<leader>sb", fzf.buffers, { desc = "Fzf: Buffers" })
 		bind("<leader>s/", fzf.lines, { desc = "Fzf: Buffer lines" })
 		bind("<leader>sg", fzf.live_grep_native, { desc = "Fzf: Live GREP" })
 		bind("<leader>sr", fzf.registers, { desc = "Fzf: Registers" })

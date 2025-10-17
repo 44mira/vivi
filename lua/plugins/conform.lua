@@ -31,13 +31,13 @@ return { -- Autoformat
 				lsp_format_opt = "fallback"
 			end
 			return {
-				timeout_ms = 500,
+				timeout_ms = 1500,
 				lsp_format = lsp_format_opt,
 			}
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "black" },
+			python = { "black", "isort" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 			html = { "prettierd", "prettier", stop_after_first = true },
@@ -48,7 +48,6 @@ return { -- Autoformat
 			bash = { "shfmt" },
 			ocaml = { "ocamlformat" },
 			rust = { "rustfmt" },
-			bib = { "bibtex-tidy" },
 		},
 	},
 	keys = {

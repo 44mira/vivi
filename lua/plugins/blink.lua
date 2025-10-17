@@ -26,6 +26,11 @@ return {
 		"saghen/blink.compat",
 		"rafamadriz/friendly-snippets",
 		{ "L3MON4D3/LuaSnip", version = "v2.*" },
+		{
+			"kristijanhusak/vim-dadbod-completion",
+			ft = { "sql", "mysql", "plsql" },
+			lazy = true,
+		},
 	},
 
 	-- use a release tag to download pre-built binaries
@@ -104,6 +109,7 @@ return {
 			per_filetype = {
 				lua = vim.tbl_extend("keep", default_sources, { "lazydev" }),
 				org = vim.tbl_extend("keep", default_sources, { "orgmode" }),
+				sql = { "snippets", "dadbod", "buffer" },
 			},
 
 			default = default_sources,
@@ -118,6 +124,10 @@ return {
 					module = "lazydev.integrations.blink",
 					-- make lazydev completions top priority (see `:h blink.cmp`)
 					score_offset = 100,
+				},
+				dadbod = {
+					name = "Dadbod",
+					module = "vim_dadbod_completion.blink",
 				},
 			},
 		},
